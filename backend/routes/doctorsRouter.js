@@ -32,7 +32,7 @@ var upload = multer({
     }
 });
 
-doctorRouter.post('/doctors', upload.single('profileImg'), (req, res, next) => {
+doctorRouter.post('/', upload.single('profileImg'), (req, res, next) => {
     User.findOne({phone:req.body.phone}).then((user)=>{
         if (user){
             return res.status(400).json({phone:"User already registered."})

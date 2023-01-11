@@ -6,14 +6,14 @@ const User = require('../models/userModel')
 
 
 const registerUser = asyncHandler(async(req, res) => {
-    const { name, email, password } = req.body
+    const { firstName,lastName, phone, password } = req.body
 
-    if (!name || !email || !password) {
+    if (!firstName ||!lastName || !phone || !password) {
         res.status(400)
         throw new Error('Please add all fields')
     }
     //Check if user exists
-    const userExists = await User.findOne({email})
+    const userExists = await User.findOne({phone})
     if(userExists){
         res.status(400)
         throw new Error('User already exists')
@@ -24,16 +24,17 @@ const registerUser = asyncHandler(async(req, res) => {
 
     //Create User
     const user = await User.create({
-        name,
-        email,
+        firstName,
+        lastName,
+        phone,
         password: hashedPassword
     })
 
     if(user){
         res.status(201).json({
             _id: user.id,
-            name: user.name,
-            email: user.email,
+            firstName: user.firstName,
+            phone: user.phone,
             token: generateToken(user._id)
         })
     }
@@ -45,16 +46,17 @@ const registerUser = asyncHandler(async(req, res) => {
 
 
 const loginUser = asyncHandler(async(req, res) => {
-    const { email, password } = req.body
+    const { phone, password } = req.body
 
-    //check for user email
-    const user = await User.findOne({email})
+    //check for user phone
+    const user = await User.findOne({phone})
 
     if(user && (await bcrypt.compare(password, user.password))){
         res.json({
             _id: user.id,
-            name: user.name,
-            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            phone: user.phone,
             token: generateToken(user._id)
 
         })
