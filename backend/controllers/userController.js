@@ -3,9 +3,8 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 
-// @desc Register User
-// @route POST/api/users
-//@access public
+
+
 const registerUser = asyncHandler(async(req, res) => {
     const { name, email, password } = req.body
 
@@ -43,9 +42,8 @@ const registerUser = asyncHandler(async(req, res) => {
         throw new Error('Invalid user data')
     }
 })
-// @desc Authenticate User
-// @route Get/api/users/login
-//@access public
+
+
 const loginUser = asyncHandler(async(req, res) => {
     const { email, password } = req.body
 
