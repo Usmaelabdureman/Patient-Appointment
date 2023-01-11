@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
-import { useSelector, useDispatch} from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate,Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
@@ -9,23 +9,23 @@ import logins from '../Assets/login-img.svg'
 
 function Login() {
     const [formData, setFormData] = useState({
-        email: '',
+        phone: '',
         password: '',
     })
-    const {email, password } = formData
+    const { phone, password } = formData
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
-    useEffect(() =>{
+    useEffect(() => {
 
-        if(isError){
+        if (isError) {
             toast.error(message)
         }
 
-        if(isSuccess || user){
+        if (isSuccess || user) {
             navigate('/')
         }
         dispatch(reset())
@@ -38,49 +38,61 @@ function Login() {
             ...prevState,
             [e.target.name]: e.target.value,
         }))
-     }
-    const onSubmit = (e) =>{
+    }
+    const onSubmit = (e) => {
         e.preventDefault()
 
         const userData = {
-            email,
+            phone,
             password,
         }
         dispatch(login(userData))
     }
-    if(isLoading){
+    if (isLoading) {
         return <Spinner />
     }
+    return (
+        <div className='container'>
+            <div className='row'>
+            <div className='col-md-3 col-sm-6'>
+                    <img src={logins} alt='login-page' width={400} />
+                </div>
+                <div className='bg-light col-md-6 offset-md-2 col-sm-6 card mt-4'>
+                    <h1>
+                        <FaSignInAlt /> Login
+                    </h1>
+                    <h2>Login to your account</h2>
 
-    return <>
-    <div className='container'>
-    <div className='row '>
-        <div className='column'><img src={logins}alt='...' width='100%' />
-        </div>
-        <div className='column'>
-        <section className="heading">
-            <h1>
-                <FaSignInAlt /> Login
-            </h1>
-            <p>Login to your account</p>
-        </section>
-        <section className="form">
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <input type="email" className="form-control" id="email " name='email' value={email} placeholder='Enter your email' onChange={onChange} />
+                    <form onSubmit={onSubmit}>
+                        <div className="form-group">
+                            <label htmlFor='phone'></label>
+                            <input
+                                type="tel"
+                                className="form-control"
+                                id="phone "
+                                name='phone'
+                                value={phone}
+                                placeholder='Enter your phone'
+                                onChange={onChange} />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor='password'></label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="password " name='password'
+                                value={password}
+                                placeholder='Enter password'
+                                onChange={onChange} />
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className='btn btn-primary mt-2'>Submit</button>
+                        </div>
+                    </form>
                 </div>
-                <div className="form-group">
-                    <input type="password" className="form-control" id="password " name='password' value={password} placeholder='Enter password' onChange={onChange} />
-                </div>
-                <div className="form-group">
-                    <button type = "submit" className='btn btn-block'>Submit</button>
-                </div>
-            </form>
-        </section>
+            </div>
         </div>
-        </div>
-        </div>
-    </>
+    );
 }
 
 export default Login
