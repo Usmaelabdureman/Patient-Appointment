@@ -1,5 +1,5 @@
 # MERN Stack Patient-Appointment Booking App
-MERN Stack patient Appointment Booking Application using React , Redux ,styled Component,Bootstrap , Node , MongoDB
+MERN Stack patient Appointment Booking Application using React, Redux ,styled Component,Bootstrap , Node , MongoDB
 
 Features :
 Separate User Interfaces for Users, Admins, Doctors
