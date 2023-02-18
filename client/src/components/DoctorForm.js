@@ -49,16 +49,16 @@ function DoctorForm({ onFinish, initivalValues }) {
             <Input placeholder="Phone Number" />
           </Form.Item>
         </Col>
-        <Col span={8} xs={24} sm={24} lg={8}>
+        {/* <Col span={8} xs={24} sm={24} lg={8}>
           <Form.Item
             required
             label="Website"
             name="website"
-            rules={[{ required: true }]}
+            rules={[{ required: false }]}
           >
             <Input placeholder="Website" />
           </Form.Item>
-        </Col>
+        </Col> */}
         <Col span={8} xs={24} sm={24} lg={8}>
           <Form.Item
             required

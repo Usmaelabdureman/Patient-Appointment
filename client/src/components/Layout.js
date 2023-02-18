@@ -166,7 +166,7 @@ function Layout({ children }) {
 
     {
       name: "MakeAppointment",
-      path: "/book-appointment/:doctorId",
+      path: "/",
       icon: "ri-file-list-line",
     },
     {
@@ -182,11 +182,11 @@ function Layout({ children }) {
   ];
 
   const doctorMenu = [
-    {
-      name: "Home",
-      path: "/",
-      icon: "ri-home-line",
-    },
+    // {
+    //   name: "Home",
+    //   path: "/",
+    //   icon: "ri-home-line",
+    // },
     {
       name: "Appointments",
       path: "/doctor/appointments",
@@ -210,16 +210,16 @@ function Layout({ children }) {
       path: "/admin/userslist",
       icon: "ri-user-line",
     },
-    {
-      name: "AppointmentList",
-      path: "/appointments",
-      icon: "ri-user-line",
-    },
-    {
-      name: "AddDoctor",
-      path: "/apply-doctor",
-      icon: "ri-user-star-line",
-    },
+    // {
+    //   name: "AppointmentList",
+    //   path: "/appointments",
+    //   icon: "ri-user-line",
+    // },
+    // {
+    //   name: "AddDoctor",
+    //   path: "/apply-doctor",
+    //   icon: "ri-user-star-line",
+    // },
     {
       name: "Doctors",
       path: "/admin/doctorslist",

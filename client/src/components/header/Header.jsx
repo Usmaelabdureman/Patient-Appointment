@@ -6,7 +6,9 @@ import './header.css'
 function Header() {
   return (
     <div className='rowh'>
+          
     <div className='col'> 
+    
     <h1 className='headerTitle'>Welcome to Tokur Anbessa Specialized hospital</h1>
     <div className="pListTitles">
         <h2>Make An Appointment with the Doctor</h2>
